@@ -5,36 +5,59 @@
 
     <div class="row card-panel grey lighten-5">
         <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
-            <!-- category selection -->
+            <!-- recipe name input-->
             <div class="row">
-				<div class="input-field col s12">
-                    <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
-					<select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose Category</option>
-                        {% for category in categories %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                        {% endfor %}
-                    </select>
-					<label for="category_name">Recipe Category</label>
-				</div>
-			</div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <div class="input-field col s12">                    
                     <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
                         type="text" class="validate" required>
                     <label for="recipe_name">Recipe Name</label>
+                    <span class="helper-text">40 characters max</span>
                 </div>
             </div>
-            <!-- recipe description -->
+            <!-- img URL input-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
-                    <textarea id="recipe_description" name="recipe_description" minlength="5"
-                        maxlength="800" class="materialize-textarea validate" required></textarea>
-                    <label for="recipe_description">Recipe Description</label>
+                    <input id="recipe_image" name="recipe_image" type="url" pattern="https?://.+"  class="validate" required>
+                    <label for="recipe_image">Image url</label>
+                    <span class="helper-text" data-error="enter valid URL" data-success="right"></span>
                 </div>
             </div>
+            <!-- Ingedients input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="recipe_ingredients" name="recipe_ingredients" minlength="3"
+                            class="materialize-textarea validate" required></textarea>
+                        <label for="recipe_ingredients">Ingredients</label>
+                        <span class="register-help">Please enter each ingredient on a new line</span>
+                    </div>
+                </div>
+                <!-- Method input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="recipe_method" name="recipe_method" minlength="3"
+                            class="materialize-textarea validate" required></textarea>
+                        <label for="recipe_method">Method</label>
+                        <span class="register-help">Please enter each new step/instruction on a new line</span>
+                    </div>
+                </div>
+                <!-- Number served input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="recipe_serves" name="recipe_serves" minlength="1" maxlength="3" type="text" class="validate"
+                            required>
+                        <label for="recipe_serves">Number of Serves</label>
+                        <span class="register-help">Number only</span>
+                    </div>
+                </div>
+                <!-- Time taken input -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="recipe_time" name="recipe_time" minlength="1" maxlength="3" type="text" class="validate"
+                            required>
+                        <label for="recipe_time">Prepping time (in minutes)</label>
+                        <span class="register-help">Number only</span>
+                    </div>
+                </div>
             <!-- submit button -->
             <div class="row">
                 <div class="col s12 center-align">
