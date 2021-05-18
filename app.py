@@ -18,24 +18,32 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-@app.route("/")
-@app.route("/get_recipes")
+@app.route("/")  
+@app.route("/get_recipes") 
 def get_recipes():
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())  
     return render_template("recipes.html", recipes=recipes)
 
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route("/search", methods=["GET", "POST"])  
+def search():
+    query = request.form.get("query")
+    recipes = list(mongo.db.recipes.find(
+        {"$text": {"$search": query}}))
+    return render_template("recipes.html", recipes=recipes)
+
+
+@app.route("/register", methods=["GET", "POST"])  
 def register():
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
+        # if username exists
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-
+        # create username/password
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
@@ -44,13 +52,13 @@ def register():
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
-        flash("Registration Successful!")
+        flash("Registration successful!")
         return redirect(url_for("profile", username=session["user"]))
 
     return render_template("register.html")
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])  
 def login():
     if request.method == "POST":
         # check if username exists in db
@@ -68,30 +76,32 @@ def login():
                             "profile", username=session["user"]))
             else:
                 # invalid password match
-                flash("Incorrect Username and/or Password")
+                flash("Incorrect username and/or password")
                 return redirect(url_for("login"))
 
         else:
             # username doesn't exist
-            flash("Incorrect Username and/or Password")
+            flash("Incorrect username and/or password")
             return redirect(url_for("login"))
 
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
+@app.route("/profile/<username>", methods=["GET", "POST"])  
 def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
+    recipes = list(mongo.db.recipes.find())
+    # if existing user display profile
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html",
+                               username=username, recipes=recipes)
 
     return redirect(url_for("login"))
 
 
-@app.route("/logout")
+@app.route("/logout")  
 def logout():
     # remove user from session cookie
     flash("You have been logged out")
@@ -99,28 +109,75 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_recipe", methods=["GET", "POST"])
-def add_recipe():    
-    if request.method == "POST":        
+@app.route("/add_recipe", methods=["GET", "POST"])  
+def add_recipe():
+    if request.method == "POST":
+        recipe_vegetarian = "on" if request.form.get(
+            "recipe_vegetarian") else "off"
         recipe = {
-            "category_name": request.form.get("category_name"),
             "recipe_name": request.form.get("recipe_name"),
             "recipe_image": request.form.get("recipe_image"),
             "recipe_ingredients": request.form.get("recipe_ingredients"),
             "recipe_method": request.form.get("recipe_method"),
             "recipe_serves": request.form.get("recipe_serves"),
             "recipe_time": request.form.get("recipe_time"),
-            "created_by": session["user"]
+            "recipe_vegetarian": recipe_vegetarian,
+            "recipe_addedby": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
-        flash("Recipe Successfully Added")
+        flash("Recipe added!")
         return redirect(url_for("get_recipes"))
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_recipe.html", categories=categories)
+    return render_template("add_recipe.html")
+
+
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])  
+def edit_recipe(recipe_id):
+    if request.method == "POST":
+        recipe_vegetarian = "on" if request.form.get(
+            "recipe_vegetarian") else "off"
+        submit = {
+            "recipe_name": request.form.get("recipe_name"),
+            "recipe_image": request.form.get("recipe_image"),
+            "recipe_ingredients": request.form.get("recipe_ingredients"),
+            "recipe_method": request.form.get("recipe_method"),
+            "recipe_serves": request.form.get("recipe_serves"),
+            "recipe_time": request.form.get("recipe_time"),
+            "recipe_vegetarian": recipe_vegetarian,
+            "recipe_addedby": session["user"]
+        }
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+        flash("Recipe updated!")
+
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
+    return render_template("edit_recipe.html", recipe=recipe)
+
+
+@app.route("/delete_recipe/<recipe_id>")  
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe deleted!")
+    return redirect(url_for("get_recipes"))
+
+
+@app.route("/recipe_content/<recipe_id>")  
+def recipe_details(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("recipe_content.html", recipe=recipe)
+
+
+@app.errorhandler(404)  # 404 ERROR
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)  # 500 ERROR
+def something_wrong(error):
+    return render_template('500.html'), 500
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
