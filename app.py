@@ -19,13 +19,13 @@ mongo = PyMongo(app)
 
 
 @app.route("/")  
-@app.route("/get_recipes") 
+@app.route("/get_recipes")  # RECIPES PAGE
 def get_recipes():
-    recipes = list(mongo.db.recipes.find())  
+    recipes = list(mongo.db.recipes.find())  # gets recipes from database
     return render_template("recipes.html", recipes=recipes)
 
 
-@app.route("/search", methods=["GET", "POST"])  
+@app.route("/search", methods=["GET", "POST"])  # SEARCH RECIPES
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find(
@@ -33,7 +33,7 @@ def search():
     return render_template("recipes.html", recipes=recipes)
 
 
-@app.route("/register", methods=["GET", "POST"])  
+@app.route("/register", methods=["GET", "POST"])  # REGISTER
 def register():
     if request.method == "POST":
         # check if username already exists in db
@@ -58,7 +58,7 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/login", methods=["GET", "POST"])  
+@app.route("/login", methods=["GET", "POST"])  # LOGIN
 def login():
     if request.method == "POST":
         # check if username exists in db
@@ -87,7 +87,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])  
+@app.route("/profile/<username>", methods=["GET", "POST"])  # PROFILE PAGE
 def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
@@ -101,7 +101,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-@app.route("/logout")  
+@app.route("/logout")  # LOGOUT
 def logout():
     # remove user from session cookie
     flash("You have been logged out")
@@ -109,11 +109,9 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_recipe", methods=["GET", "POST"])  
+@app.route("/add_recipe", methods=["GET", "POST"])  # ADD RECIPE
 def add_recipe():
     if request.method == "POST":
-        recipe_vegetarian = "on" if request.form.get(
-            "recipe_vegetarian") else "off"
         recipe = {
             "recipe_name": request.form.get("recipe_name"),
             "recipe_image": request.form.get("recipe_image"),
@@ -121,8 +119,7 @@ def add_recipe():
             "recipe_method": request.form.get("recipe_method"),
             "recipe_serves": request.form.get("recipe_serves"),
             "recipe_time": request.form.get("recipe_time"),
-            "recipe_vegetarian": recipe_vegetarian,
-            "recipe_addedby": session["user"]
+            "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe added!")
@@ -131,11 +128,9 @@ def add_recipe():
     return render_template("add_recipe.html")
 
 
-@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])  
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])  # EDIT RECIPE
 def edit_recipe(recipe_id):
     if request.method == "POST":
-        recipe_vegetarian = "on" if request.form.get(
-            "recipe_vegetarian") else "off"
         submit = {
             "recipe_name": request.form.get("recipe_name"),
             "recipe_image": request.form.get("recipe_image"),
@@ -143,8 +138,7 @@ def edit_recipe(recipe_id):
             "recipe_method": request.form.get("recipe_method"),
             "recipe_serves": request.form.get("recipe_serves"),
             "recipe_time": request.form.get("recipe_time"),
-            "recipe_vegetarian": recipe_vegetarian,
-            "recipe_addedby": session["user"]
+            "created_by": session["user"]
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
         flash("Recipe updated!")
@@ -154,15 +148,15 @@ def edit_recipe(recipe_id):
     return render_template("edit_recipe.html", recipe=recipe)
 
 
-@app.route("/delete_recipe/<recipe_id>")  
+@app.route("/delete_recipe/<recipe_id>")  # DELETE RECIPE
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe deleted!")
     return redirect(url_for("get_recipes"))
 
 
-@app.route("/recipe_content/<recipe_id>")  
-def recipe_details(recipe_id):
+@app.route("/recipe_content/<recipe_id>")  # RECIPE DETAILS
+def recipe_content(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template("recipe_content.html", recipe=recipe)
 
