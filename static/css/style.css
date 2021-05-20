@@ -1,7 +1,115 @@
+/* --- GENERAL --- */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-.flashes h4 {
-    line-height: 2;
+.page-header {
+    font-weight: bold;
+    color: rgb(128, 0, 28);
+}
+
+/* --- NAVBAR --- */
+
+nav .brand-logo {
+    font-family: cursive;
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+}
+
+.sidenav h5 {
+    font-family: cursive;
+}
+
+/* --- FOOTER --- */
+
+.social-links a {
+    padding: 3px;
+}
+
+.footer-copyright {
+    font-size: 12px;
+}
+
+/* --- RECIPE CARDS --- */
+
+.recipe-container {
+    line-height: 0;
+}
+
+.card {
+    position: relative;
+    margin: 2rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 5px;
+}
+
+.card.small {
+    height: 200px;
+}
+
+.recipe-image {
+    width: 100%; 
+    height: 100%; 
+    border-radius: 5px;
+    display: block; 
+    margin: 0;
+}
+
+.recipecard-title {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* --- RECIPE CONTENTS --- */
+
+.chip {
+    display: inline-block;
+    height: 32px;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    line-height: 32px;
+    padding: 0 12px;
+    border-radius: 16px;
+    background-color: rgb(193, 180, 228);
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.details {
+    font-family: 'Roboto', sans-serif;
+}
+
+.created-by {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(155, 148, 148);
+}
+
+.section-userrecipes {
+    padding-bottom: 18rem;
+}
+
+/* --- OTHER --- */
+
+.register-help {
+    font-size: 12px;
+    color: rgb(155, 148, 148);
+}
+
+.section-noresults {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
 }
