@@ -24,13 +24,9 @@ User can browse this website on different devices.
 
 <img src="./assets/images/responsive1.png" alt="responsive1"/>
 
-<img src="./assets/images/responsive2.png" alt="responsive2"/>
-
-<img src="./assets/images/responsive3.png" alt="responsive2"/>
-
 ## Wireframes 
 
-<img src="./assets/images/wireframe-ms3.png" alt="Wireframe-MS3"/>
+[Wireframes](https://github.com/suping106/milestone3/blob/master/assets/wireframes/MS3_wireframes.pdf)
 
 ## Features
 
@@ -44,21 +40,22 @@ User can browse this website on different devices.
 
 ## Technologies Used
 
-- [HTML5](https://en.wikipedia.org/wiki/HTML5) - used for project development 
-- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - used for custome styling the elements.
-- [GidPod](https://www.gitpod.io/) - used online IDE for project development, code writing and editing
-- [Gidhub](https://github.com/) - used for project repository and version control
-- [Bootstrap 4](<https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)>) - used it's library templates for navbars, buttoms and form.
-- [Google Chrome Dev Tools](https://developers.google.com/web/tools/chrome-devtools) - used throughout project development for checking the responsiveness and debugging.
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) 
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) 
+- [Python](https://www.python.org/)
+- [Javascript](https://www.javascript.com/) 
+- [GidPod](https://www.gitpod.io/) 
+- [Gidhub](https://github.com/) 
+- [Heroku](https://id.heroku.com/)
+- [Bootstrap 4](<https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)>) 
+- [Materialize CSS](https://materializecss.com/)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Jquery](https://jquery.com/)
+- [Google Chrome Dev Tools](https://developers.google.com/web/tools/chrome-devtools) 
 - [Reponsive Design Checker](https://responsivedesignchecker.com/) 
-- [Figma](https://www.figma.com/) for creating project wireframes.
-- [Fontawesome](https://fontawesome.com/) - used for providing social media icons.
-- [Javascript](https://www.javascript.com/) - used for scripts of Google map and contact form.
-- [EmailJS](https://www.emailjs.com/) - used for emails.
-- [Photo resize](https://www.photoresizer.com/) 
-- [Photo collage](https://www.photocollage.com/) 
-- [Photo resize](https://www.img2go.com/convert-image-to-image)
-- [Photo enlarger](https://www.photoenlarger.com/)
+- [Balsamiq](https://balsamiq.com/) 
+- [Fontawesome](https://fontawesome.com/) 
+- [Google Fonts](https://fonts.google.com/)
 
 ## Testing
 
@@ -78,7 +75,7 @@ Responsiveness of the site was tested using [Chrome devtools](https://developers
 
 <img src="./assets/images/responsive2.png" alt="responsive2"/>
 
-<img src="./assets/images/responsive3.png" alt="responsive2"/>
+<img src="./assets/images/responsive3.png" alt="responsive3"/>
 
 ### Browser Compatibility
 
