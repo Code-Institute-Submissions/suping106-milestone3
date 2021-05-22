@@ -23,6 +23,7 @@ nav .brand-logo {
     display: inline-block;
     font-size: 2.1rem;
     padding: 0;
+    text-indent: 10px;
 }
 
 .sidenav h5 {
@@ -53,7 +54,7 @@ nav .brand-logo {
 }
 
 .card.small {
-    height: 200px;
+    height: 220px;
 }
 
 .recipe-image {
