@@ -1,23 +1,23 @@
 ## Backend Development Milestone Project 3 - Shared Cookbook
 Shared Cookbook is a recipe website for people who loves cooking and enjoys sharing recipes. 
 
-The website is design to inspire people for sharing their recipes to everyone.
+The website is design to have a place to save my favarite recipes and inspire people for sharing theirs too.
 
 The website can be access by here.
 
 ## UX
 
 ### As a user
-- I can have a brief glance of the recipe cards with images in the home page.
-- I can navigate through different pages.
+- When I open the website home page it will clearly shows the recipe image cards.
 - I can search for recipes.
-- I can register to the site.
-- After I registered I can add, edit and delete my own recipes.
-
+- I can easily access recipe content.
+- I can signup/register or sign out to the website.
+- I can add, edit and delete my own recipes once signed in.
 
 ### As a website owner
-- I want the website to be simple to use.
-- I want the users to find it easy to share their own recipes.
+- When I searched recipe websites I always like the ones that are simple and straight forward. So for this website I wanted the samething.
+- This website can be my own recipe collection site for all the recipes I like.
+- I want users to enjoy cooking and share their own recipes.
 
 ### Responsive design
 User can browse this website on different devices.
@@ -61,10 +61,10 @@ User can browse this website on different devices.
 
 ### Code Validation
 - HTML code was validated on [W3C Validator](https://validator.w3.org/nu/#textarea). Errors were corrected.
-<img src="./assets/images/NoErrorHtml.png" alt="NoErrorHtml"/>
+
 
 - CSS stylesheet was validated on [W3C Validator](https://validator.w3.org/nu/#textarea). No error found.
-<img src="./assets/images/NoErrorCSS.png" alt="NoErrorCSS"/>
+
 
 - Javascript files were validated on [JSHint](https://jshint.com/). No error found.
 
