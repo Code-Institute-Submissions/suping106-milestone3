@@ -11,42 +11,41 @@
             <!-- Form -->
             <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
                 <div class="row">
-                    <!-- Recipe name input -->
                     <div class="input-field col s12">
-                        <input id="recipe_name" name="recipe_name" minlength="1" 
-                            type="text" class="validate" required>
+                        <input id="recipe_name" name="recipe_name" type="text" 
+                            pattern="^[^\s][A-Za-z0-9\s]{1,40}$" class="validate" required>
                         <label for="recipe_name">Recipe Name</label>
-                        <span class="register-help">40 characters max</span>
+                        <span class="register-help">1-40 characters, letters/numbers only</span>
                     </div>
                 </div>
-                <!-- Image input -->
+
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="recipe_image" name="recipe_image" minlength="3" 
-                            type="text" class="validate" required>
+                        <input id="recipe_image" name="recipe_image" type="text" 
+                            pattern="https?://.+" class="validate" required>
                         <label for="recipe_image">Image URL</label>
-                        <span class="register-help">Please enter the URL for your recipe image</span>
+                        <span class="register-help">Please enter a valid URL for your recipe image</span>
                     </div>
                 </div>
-                <!-- Ingedients input -->
+
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="recipe_ingredients" name="recipe_ingredients" minlength="3"
+                        <textarea id="recipe_ingredients" name="recipe_ingredients"
                             class="materialize-textarea validate" required></textarea>
                         <label for="recipe_ingredients">Ingredients</label>
                         <span class="register-help">Please enter each ingredient on a new line</span>
                     </div>
                 </div>
-                <!-- Method input -->
+                
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="recipe_method" name="recipe_method" minlength="3"
+                        <textarea id="recipe_method" name="recipe_method"
                             class="materialize-textarea validate" required></textarea>
                         <label for="recipe_method">Method</label>
                         <span class="register-help">Please enter each step/instruction on a new line</span>
                     </div>
                 </div>
-                <!-- Number served input -->
+
                 <div class="row">
                     <div class="input-field col s12">                        
                         <input id="recipe_serves" name="recipe_serves" minlength="1" 
@@ -55,7 +54,7 @@
                         <span class="register-help">Please enter the number of people the recipe serves</span>
                     </div>
                 </div>
-                <!-- Time taken input -->
+                
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="recipe_time" name="recipe_time" minlength="1"
