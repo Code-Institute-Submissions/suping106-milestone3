@@ -22,20 +22,11 @@
             <div class="col s4">
             </div>
         </div>
-
-        <!-- Recipes added below header -->
-        <div class="row">
-            <div class="col s12 m8 offset-m2">
-                <h6 class="center-align page-header">
-                    Your Recipes:
-                </h6>
-            </div>
-        </div>
-    
+  
         <!-- Users recipe cards display -->
         <div class="section-userrecipes">
             <div class="row">
-                {% for recipe in recipes if session.user|lower == recipe.created_by|lower %}  
+                {% for recipe in recipes %}  
                 <div class="col s12 m6 l4 recipe-container">
                     <div class="card small">
                         <a href="{{ url_for('recipe_content', recipe_id=recipe._id) }}">
