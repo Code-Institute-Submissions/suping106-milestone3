@@ -80,13 +80,20 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    if not session.get("user"):
+        return render_template("404.html")
+
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    recipes = list(mongo.db.recipes.find())
     if session["user"]:
-        return render_template("profile.html",
-                               username=username, recipes=recipes)
-
+        if str(username) == "mongo":
+            recipes = list(mongo.db.recipes.find())
+            print("this is mongo")
+        else:
+            recipes = list(
+                mongo.db.recipes.find({"created_by": session["user"]}))
+        return render_template(
+            "profile.html", username=username, recipes=recipes)
     return redirect(url_for("login"))
 
 
@@ -149,7 +156,12 @@ def recipe_content(recipe_id):
     return render_template("recipe_content.html", recipe=recipe)
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html"), 404
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
