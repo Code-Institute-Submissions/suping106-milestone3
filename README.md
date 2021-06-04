@@ -102,15 +102,29 @@ Compatibility of the site was tested on Google Chrome, Microsoft Edge and Firefo
 - I can visit the website on a desktop, a laptop or a smartphone.
     * The website can be access on desktops, laptops and smartphones.
     <img src="./assets/images/responsive1.png" alt="responsive1"/>
-    
+
 - I can have a visual overview of what the website offered when home page opened.
-    * The recipes give users a quick visual overview
+    * The recipes give users a quick overview of all the recipes.
     <img src="./assets/images/recipe_cards.png" alt="recipe_cards"/>
 
+- I can navigate through the website.
+    * Users can navigate through the website with the navbar on top of the website. Mobile users can use hamburger menu.
+
 - I can search for recipes.
+    * Users can use the search bar on the home page to search for recipes by the words in the recipe title or the ingredients.
 - I can easily access recipe content.
+    * By clicking a recipe card a recipe page will open. Users can see the recipe details.
+
 - I can signup/register or sign out to the website.
+    * Users can register to the website by clicking Register link on the Navbar.
+
 - I can add, edit and delete my own recipes once signed in.
+    * Once users registered they can 
+        1. Log in and log out their account by clicking Log In or Log Out link on the Navbar. 
+        2. Share their own recipes by adding them to the website with Add Recipe link on the Navbar.
+        3. View their profile page with all the recipes that user uploaded by clicking Profile link on the Navbar.
+        4. Edit their own recipes by clicking the Edit buttons underneath the recipe cards.
+        5. Delete their own recipes by clicking the Delete buttons underneath the recipe cards.        
     
 #### As a website owner
 - I want this website to be clean, simple and straight forward.
