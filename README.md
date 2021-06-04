@@ -30,6 +30,15 @@ User can browse this website on different devices.
 
 [Wireframes](https://github.com/suping106/milestone3/blob/master/assets/wireframes/MS3_wireframes.pdf)
 
+## Database Schema
+
+- The database in MongoDB has three collections: categories, recipes and users. Categories collection is for the future use but not used in this project.
+<img src="./assets/images/collection_db.png" alt="collection_db"/>
+- Recipes collection
+<img src="./assets/images/recipe_db.png" alt="recipe_db"/>
+- Users collection
+<img src="./assets/images/user_db.png" alt="user_db"/>
+
 ## Features
 
 ### Existing Features
@@ -46,30 +55,32 @@ User can browse this website on different devices.
 
 ## Technologies Used
 
-- [HTML5](https://en.wikipedia.org/wiki/HTML5) 
-- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) 
-- [Python](https://www.python.org/)
-- [Javascript](https://www.javascript.com/) 
-- [GidPod](https://www.gitpod.io/) 
-- [Gidhub](https://github.com/) 
-- [Heroku](https://id.heroku.com/)
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) for the structure and the content of the project.
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) for custome styling the HTML5 elements.
+- [Python](https://www.python.org/) for the backend of the project
+- [Javascript](https://www.javascript.com/) used as the JavaScript functionality
+- [GidPod](https://www.gitpod.io/) for project development, code writing and editing
+- [Gidhub](https://github.com/) for project repository and version control
+- [Heroku](https://id.heroku.com/) for deploying the app to the cloud platform.
 - [Bootstrap 4](<https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)>) 
-- [Materialize CSS](https://materializecss.com/)
-- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
-- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
-- [Jquery](https://jquery.com/)
-- [Google Chrome Dev Tools](https://developers.google.com/web/tools/chrome-devtools) 
+- [Materialize CSS](https://materializecss.com/) for the design framework.
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)  for providing libraries, tools and technologies for the app.
+- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) for templating Python.
+- [Jquery](https://jquery.com/) for JavaScript functionality
+- [Google Chrome Dev Tools](https://developers.google.com/web/tools/chrome-devtools) for checking the responsiveness and debugging.
 - [Reponsive Design Checker](https://responsivedesignchecker.com/) 
-- [Balsamiq](https://balsamiq.com/) 
-- [Fontawesome](https://fontawesome.com/) 
-- [Google Fonts](https://fonts.google.com/)
-- [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
+- [Balsamiq](https://balsamiq.com/) for creating project wireframes.
+- [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/) for password hashing, authentication and autohorization.
+- [Fontawesome](https://fontawesome.com/) for using the icons in the project.
+- [Google Fonts](https://fonts.google.com/) for using the fonts in the project.
+
 
 ## Testing
 
 ### Code Validation
 - HTML code in each html file was validated on [W3C Validator](https://validator.w3.org/nu/#textarea). No error was found.
-Due to the use of jinja templating I got some errors when directly copied the code to validator. With tutor's help I was able to get the source code from Chrome DevTools. No error was found but there is a warning for section lacks heading.
+
+    Due to the use of jinja templating I got some errors when directly copied the code to validator. With tutor's help I was able to get the source code from Chrome DevTools. No error was found but there is a warning (same for all html files) for section lacks heading. The warning is from the flash message section in base.html file.
 <img src="./assets/validators/warning.png" alt="warning"/>
 
 - CSS stylesheet was validated on [W3C Validator](https://validator.w3.org/nu/#textarea). No error found.
@@ -128,9 +139,15 @@ Compatibility of the site was tested on Google Chrome, Microsoft Edge and Firefo
     
 #### As a website owner
 - I want this website to be clean, simple and straight forward.
-- I want to store my favarite recipe here.
+    * Home page let the users easily navigate through the website. They can open a recipe with a simple click. They can search by typing some keywords and navigate to different pages through the navbar on the top.
+    <img src="./assets/images/home_page.png" alt="home_page"/> 
+- I want to store my favarite recipes here.
+    * This could be my favarite recipes collection site. I could upload the recipes to the site and easily get an access to it. Users could do the same by uploading their recipes here.
 - I can manage all the recipes of my site including editing and deleting user's recipes.
+    * Mongo was assigned to be a site manager. Mongo has an access to all the recipes' edit and delete function through the profile page.
+    <img src="./assets/images/mongo_profile.png" alt="mongo_profile"/> 
 - I want users to enjoy cooking and share their own recipes.
+    * Users can get inspiration from other people's recipes and find the joy of cooking and sharing.
 
 ### Bugs
 
@@ -139,6 +156,63 @@ Compatibility of the site was tested on Google Chrome, Microsoft Edge and Firefo
 - Console error. I couldn't find a solution to solve this error.
 
 ## Deployment
+- The source code for this project is in GitHub repository.
+- The database for the project was created in MongoDB.
+- Heroku was used for deploying the app to the cloud platform.
+
+**Clone the project**
+- Log in to GitHub
+- Locate milestone3 project repository
+- Click the green **Code** button 
+- Copy the link shown on the popup window under "Clone with HTTPS"
+- In Gitpod teminal window make a new directory on your computer
+- At the command promt type **git clone** and paste the copied link https://github.com/suping106/milestone3.git
+- Press enter to create the local clone
+
+**Working with local copy**
+- Install all the requirements.
+    * Type in the command in the terminal window: **pip3 install -r requirements.txt**.
+- Create the environment variables.
+    * Create a **.gitignore** file in the root directory of the project.
+    * Add the **env.py** file in the **.gitignore**.
+    * Create the file env.py containing following envornment variables.
+        - Import os
+        - os.environ.setdefault("IP", "Added by developer")
+        - os.environ.setdefault("PORT", "Added by developer")
+        - os.environ.setdefault("SECRET_KEY", "Added by developer")
+        - os.environ.setdefault("MONGO_URI", "Added by developer")
+        - os.environ.setdefault("MONGO_DBNAME", "Added by developer")
+- Run the app
+    * Type **python3 app.py** and run the app.
+
+**Deploying Project To Heroku**
+- Set up Heroku 
+    * Create a Heroku account 
+    * Click **New** button and select **create a new app**
+    * Type in **App name** and **Choose a region**
+    * Click **Create app** button
+- Set up local workspace for Heroku
+    * In the command line type **pip3 freeze -- local > requirements.txt** for Heroku to know which filed to install.
+    * In the command line type **python app.py > Procfile** for Heroku to know which file is needed as entry point.
+- Set up deployment method in Heroku
+    * Click **Deploy** tab and select **Connect to GitHub**
+    * Copy the project repository name from github and pasted in the search field.
+    * When the repo appears click on **Connect** to connect the repository with Heroku
+    * Click **Settings** tab and select **Reveal Config Vars** in **Config Vars** section.
+    * Enter the values saved in env.py file to these variables below. 
+        - IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME
+- Push the requirements.txt and Procfile to repository
+    * In the command line of your workspace teminal type following
+        - git add requirements.txt
+        - git commit -m "add requirements.txt file"
+        - git add Procfile
+        - git commint -m "add Procfile"
+        - git push
+- Set up automatic deployment in Heroku
+    * Click deploy tab and select **Enable Automatic Deploys** in **Automatic deploys** section.
+    * Click **Deploy Branch** and once deployment completed you'll see **Your app was successfully deployed.**
+- Open the app in Heroku
+    * Click on **Open app** in the top right hand corner. The app will open and the live link is available from the address bar.
 
 ## Credits
 
