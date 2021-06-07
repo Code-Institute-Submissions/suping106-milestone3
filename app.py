@@ -94,7 +94,6 @@ def profile(username):
     if session["user"]:
         if str(username) == "mongo":
             recipes = list(mongo.db.recipes.find())
-            print("this is mongo")
         else:
             recipes = list(
                 mongo.db.recipes.find({"created_by": session["user"]}))
@@ -175,4 +174,4 @@ def not_found(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
